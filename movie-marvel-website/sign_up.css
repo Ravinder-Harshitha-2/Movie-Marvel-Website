@@ -1,0 +1,84 @@
+body,html {
+    background-image: url('bg1.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    font-family: Montserrat;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 120px;
+  flex-wrap: wrap; 
+}
+
+.background img{
+   width: 500px;
+   height: 440px;
+}
+
+.signup-box {
+  background-color: #1c1c1c;
+  color: white;
+  width: 360px;
+  padding: 40px;
+}
+
+.signup-box h2 {
+  text-align: center;
+  margin-bottom: 40px;
+  margin-top: 0px;
+}
+
+.signup-box label {
+  display: block;
+  font-size: 0.85rem;
+  margin-bottom: 12px;
+  margin-top: 15px;
+}
+
+.signup-box input {
+  width: 90%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: none;
+  border-radius: 4px;
+}
+
+.signup-box button {
+  width: 96%;
+  padding: 10px;
+  background-color: #ffde59;
+  color: #131212;
+  font-weight: bold;
+  border: 2px solid transparent;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.signup-box button:hover{
+  color: #ffde59;
+  background-color: #131212;
+  cursor: pointer;
+  border: 2px solid #ffde59; 
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+} 
+
+.signup-box .login {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 13px;
+}
+
+.signup-box .login a {
+  color: #ffde59;
+  text-decoration: none;
+}
+
+.signup-box .login a:hover {
+    color: #ccc;
+    text-decoration: underline;
+}
