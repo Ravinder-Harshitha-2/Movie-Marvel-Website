@@ -6,49 +6,42 @@ body,html {
     font-family: Montserrat;
 }
 
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 120px;
-  flex-wrap: wrap; 
-}
-
-.background img{
-   width: 500px;
-   height: 440px;
-}
-
-.signup-box {
+.login-container {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   background-color: #1c1c1c;
   color: white;
-  width: 360px;
-  padding: 40px;
+  padding: 40px 30px;
+  border-radius: 20px;
+  width: 350px;
+  z-index: 1;
+  box-shadow: 0 0 10px rgba(0,0,0,0.5);
 }
 
-.signup-box h2 {
+.login-container h2 {
   text-align: center;
-  margin-bottom: 40px;
-  margin-top: 0px;
+  margin-bottom: 30px;
 }
 
-.signup-box label {
+.login-container label {
   display: block;
   font-size: 0.85rem;
   margin-bottom: 12px;
   margin-top: 15px;
 }
 
-.signup-box input {
-  width: 90%;
+.login-container input {
+  width: 93%;
   padding: 10px;
   margin-bottom: 15px;
   border: none;
   border-radius: 4px;
 }
 
-.signup-box button {
-  width: 96%;
+.login-container button {
+  width: 98.5%;
   padding: 10px;
   background-color: #ffde59;
   color: #131212;
@@ -57,9 +50,10 @@ body,html {
   border-radius: 4px;
   cursor: pointer;
   font-size: 15px;
+  margin-top: 5px;
 }
 
-.signup-box button:hover{
+.login-container button:hover{
   color: #ffde59;
   background-color: #131212;
   cursor: pointer;
@@ -67,19 +61,19 @@ body,html {
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 } 
 
-.signup-box .login {
+.login-container .signup {
   text-align: center;
   margin-top: 50px;
   font-size: 13px;
   color: rgb(255, 255, 255);
 }
 
-.signup-box .login a {
+.login-container .signup a {
   color: #ffde59;
   text-decoration: none;
 }
 
-.signup-box .login a:hover {
+.login-container .signup a:hover {
     color: #ccc;
     text-decoration: underline;
 }
