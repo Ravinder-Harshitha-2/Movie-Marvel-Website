@@ -17,7 +17,7 @@ const auth = getAuth();
 document.getElementById("logoutBtn").addEventListener("click", () => {
     signOut(auth).then(() => {
         alert("Logged out!");
-        window.location.href = "first.html";
+        window.location.href = "log_in.html";
     }).catch((error) => {
         console.error("Logout error:", error);
     });
