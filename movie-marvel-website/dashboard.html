@@ -9,23 +9,62 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav class="nav">
-        <a href="dashboard.html">
-            <img src="logo2.png" alt="Website Logo" height="100" width="100">
-        </a>
+    <header>
+        <nav class="nav">
+            <a href="dashboard.html">
+                <img src="logo2.png" alt="Website Logo">
+            </a>
+            <ul>
+                <li><a href="dashboard.html">Home</a></li>
+                <li><a href="search.html">Search</a></li>
+                <li><a href="genre.html">Genre</a></li>
+                <li><a href="Watchlists.html">Watchlists</a></li>
+                <li><a href="Subscriptions.html">Subscriptions</a></li>
+            </ul>
+            <button id="logoutBtn" class="logout-button">Log Out</button>
+        </nav>
+    </header>
 
-        <ul>
-            <li><a href="Home.html">Home</a></li>
-            <li><a href="Latest.html">Latest</a></li>
-            <li><a href="Genre.html">Genre</a></li>
-            <li><a href="Watchlists.html">Watchlists</a></li>
-            <li><a href="Subscriptions.html">Subscriptions</a></li>
-        </ul>
-        <button id="logoutBtn" class="logout-button">Log Out</button>
-    </nav>
+    <div class="image-container">
+        <img src="bg.png" class="img">
+        <h3 class="image-text">Your go-to destination for watchlist management</h3>
+    </div>
+    
+    
+    <h2>Trending Movies</h2>
+    <div id="trendingContainer" class="movie-section"></div>
 
-    <h1>Hi! User</h1>
+    <br>
+    <br>
+    <br>
 
+    <h2>Popular Movies</h2>
+    <div id="popularContainer" class="movie-section"></div>
+
+    <br>
+    <br>
+    <br>
+
+    <footer>
+        <div class="footer">
+            <div class="row">
+                <ul>
+                    <li><a href="dashboard.html">Home</a></li>
+                    <li><a href="search.html">Search</a></li>
+                    <li><a href="genre.html">Genre</a></li>
+                    <li><a href="Watchlists.html">Watchlists</a></li>
+                    <li><a href="Subscriptions.html">Subscriptions</a></li>
+                </ul>
+            </div>
+
+            <div class="row">
+                Movie Marvel © 2025 - All rights reserved
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
     <script type="module" src="dashboard.js"></script>
 </body>
 </html>
