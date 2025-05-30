@@ -67,7 +67,7 @@ async function searchMovies() {
 
     card.innerHTML = `
       <img src="https://image.tmdb.org/t/p/w200${movie.poster_path}" alt="${movie.title}" />
-      <h4>${movie.title}</h4>
+      <h3>${movie.title}</h3>
       <p><strong>Release:</strong> ${movie.release_date}</p>
       <p><strong>Language:</strong> ${language}</p>
       <button class="watchlist-btn">Add to Watchlist</button>
@@ -84,7 +84,7 @@ async function searchMovies() {
     // ✅ Add to Watchlist button
     const watchlistBtn = card.querySelector(".watchlist-btn");
     watchlistBtn.addEventListener("click", (event) => {
-      event.stopPropagation(); // ⛔ Prevent card click
+      event.stopPropagation(); 
       console.log("Clicked watchlist for:", movie.title);
       addToWatchlist(movie);
     });

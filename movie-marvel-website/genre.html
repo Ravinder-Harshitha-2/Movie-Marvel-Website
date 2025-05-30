@@ -6,36 +6,65 @@
     <title>Movie Marvel</title>
     <link rel="icon" type="image/x-icon" href="logo.jpg">
     <link rel="stylesheet" href="genre.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav class="nav">
-        <a href="dashboard.html">
-            <img src="logo2.png" alt="Website Logo" height="100" width="100">
-        </a>
+    <header>
+        <nav class="nav">
+            <a href="dashboard.html">
+                <img src="logo2.png" alt="Website Logo">
+            </a>
+            <ul>
+                <li><a href="dashboard.html">Home</a></li>
+                <li><a href="search.html">Search</a></li>
+                <li><a href="genre.html">Genre</a></li>
+                <li><a href="Watchlists.html">Watchlists</a></li>
+                <li><a href="Subscriptions.html">Subscriptions</a></li>
+            </ul>
+            <button id="logoutBtn" class="logout-button">Log Out</button>
+        </nav>
+    </header>
 
-        <ul>
-            <li><a href="dashboard.html">Home</a></li>
-            <li><a href="Latest.html">Latest</a></li>
-            <li><a href="genre.html">Genre</a></li>
-            <li><a href="Watchlists.html">Watchlists</a></li>
-            <li><a href="Subscriptions.html">Subscriptions</a></li>
-        </ul>
-        <button id="logoutBtn" class="logout-button">Log Out</button>
-    </nav>
-
-    <h2>Search Genre</h2>
-    <p>Click on the button to open the dropdown menu.</p>
+    <h2>Search from Genre</h2>
+    <p>Click on the button to open the dropdown menu, select the genre you want and get your choice of movies.</p>
 
 
     <div class="search-container">
         <select id="genreSelect">
-        <option value="">Select Genre</option>
+            <option value="">Select Genre</option>
         </select>
         <button onclick="searchMovies()">Search</button>
     </div>
 
+    <br>
+    <br>
+    <br>
+
+    <h2>Your Results</h2>
     <div id="moviesContainer" class="movie-grid"></div>
+
+    <br>
+    <br>
+    <br>
+
+    <footer>
+        <div class="footer">
+            <div class="row">
+                <ul>
+                    <li><a href="dashboard.html">Home</a></li>
+                    <li><a href="search.html">Search</a></li>
+                    <li><a href="genre.html">Genre</a></li>
+                    <li><a href="Watchlists.html">Watchlists</a></li>
+                    <li><a href="Subscriptions.html">Subscriptions</a></li>
+                </ul>
+            </div>
+
+            <div class="row">
+                Movie Marvel © 2025 - All rights reserved
+            </div>
+        </div>
+    </footer>
 
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
