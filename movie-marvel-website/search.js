@@ -3,12 +3,12 @@ const API_KEY = '8b127865f52e616a7772337e4ef916f6';
 
 // 🟦 Firebase Config
 const firebaseConfig = {
-  apiKey: "YOUR_FIREBASE_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "SENDER_ID",
-  appId: "APP_ID"
+  apiKey: "AIzaSyCKAGAZLcFNTsfZ23yUIGKv7T1y6jaMWKA",
+    authDomain: "moviewebsite-2ce81.firebaseapp.com",
+    projectId: "moviewebsite-2ce81",
+    storageBucket: "moviewebsite-2ce81.firebasestorage.app",
+    messagingSenderId: "978355164474",
+    appId: "1:978355164474:web:a038a7444020746ba76c03"
 };
 
 // Initialize Firebase
