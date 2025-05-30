@@ -1,0 +1,58 @@
+/* Navigation bar */
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  overflow: auto;
+  position: sticky;
+}
+
+nav ul li {
+  position: relative;
+  margin: 0 10px;
+  list-style: none;
+  display: inline-block;
+  padding: 15px;
+  font-size: 18px;
+  color: rgb(0, 0, 0);
+  cursor: pointer;
+  text-decoration: none;
+  position: sticky;
+  font-family: 'Montserrat';
+}
+
+nav ul li a {
+  text-decoration: solid;
+  cursor: pointer;
+  color: rgb(0, 0, 0);
+}
+
+.nav a:hover {
+  color: rgb(191, 191, 191);
+}
+
+/* Log out Button */
+.button{
+  background-color: #ffde59;
+  color: #131212;
+  font-size: 18px;
+  padding: 18px 25px;
+  border-radius: 4px;
+  border: none;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: Montserrat;
+  font-weight: 500;
+  margin-right: 25px;
+  border: 2px solid transparent;
+}
+
+.button:hover{
+  color: #ffde59;
+  background-color: #131212;
+  cursor: pointer;
+  border: 2px solid #ffde59; 
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
