@@ -202,7 +202,7 @@ document.addEventListener("DOMContentLoaded", () => {
     logoutBtn.addEventListener("click", () => {
       firebase.auth().signOut().then(() => {
         alert("Logged out!");
-        window.location.href = "landing_page.html";
+        window.location.href = "index.html";
       }).catch((error) => {
         console.error("Logout error:", error);
       });
