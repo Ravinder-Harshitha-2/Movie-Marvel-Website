@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "movie-marvel-website",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
