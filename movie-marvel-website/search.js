@@ -68,12 +68,10 @@ async function searchMovies() {
     });
 
     // ✅ Add to Watchlist button
-    const watchlistBtn = card.querySelector(".watchlist-btn");
-    watchlistBtn.addEventListener("click", (event) => {
-      event.stopPropagation(); 
-      console.log("Clicked watchlist for:", movie.title);
-      addToWatchlist(movie);
-    });
+    card.querySelector(".watchlist-btn").addEventListener("click", async (e) => {
+          e.stopPropagation();
+          await saveMovieToWatchlist(movie, db, "guest_user");
+        });
 
       container.appendChild(card);
     });
@@ -112,3 +110,22 @@ function addToWatchlist(movie) {
     }
   });
 }
+
+const auth = firebase.auth();
+
+// Ensure the DOM is fully loaded before attaching event listener
+document.addEventListener("DOMContentLoaded", () => {
+  const logoutBtn = document.getElementById("logoutBtn");
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+      auth.signOut().then(() => {
+        alert("Logged out!");
+        window.location.href = "landing_page.html";
+      }).catch((error) => {
+        console.error("Logout error:", error);
+      });
+    });
+  } else {
+    console.warn("Logout button not found!");
+  }
+});

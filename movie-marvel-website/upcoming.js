@@ -22,8 +22,7 @@ const API_KEY = '8b127865f52e616a7772337e4ef916f6';  // Replace with actual TMDB
 
     window.onload = async () => {
       await loadGenres();
-      loadMovies('trending', 'trendingContainer', `https://api.themoviedb.org/3/trending/movie/week?api_key=${API_KEY}`);
-      loadMovies('popular', 'popularContainer', `https://api.themoviedb.org/3/movie/popular?api_key=${API_KEY}`);
+      loadMovies('upcoming', 'upcomingContainer', `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}`);
     };
 
     async function loadMovies(type, containerId, apiUrl) {
@@ -33,17 +32,15 @@ const API_KEY = '8b127865f52e616a7772337e4ef916f6';  // Replace with actual TMDB
 
       data.results.forEach(movie => {
         const card = document.createElement("div");
-        const releaseYear = movie.release_date?.split('-')[0] || 'N/A';
+        const releaseDate = movie.release_date || 'N/A';
         const genres = movie.genre_ids.map(id => genreMap[id]).filter(Boolean).join(', ');
-        const score = movie.vote_average?.toFixed(1) || 'N/A';
 
         card.className = "movie-card";
         card.innerHTML = `
           <img src="https://image.tmdb.org/t/p/w200${movie.poster_path}" alt="${movie.title}" />
           <h4>${movie.title}</h4>
-          <p><strong>Year:</strong> ${releaseYear}</p>
-          <p><strong>Genre:</strong> ${genres}</p>
-          <p><strong>Audience Score:</strong> ${score}</p>
+          <p>Release Date: ${releaseDate}</p>
+          <p>Genre: ${genres}</p>
           <button class="watchlist-btn">Add to Watchlist</button>
         `;
 

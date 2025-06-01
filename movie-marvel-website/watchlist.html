@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
-    <link rel="icon" type="image/x-icon" href="favicon.jpg">
-    <link rel="stylesheet" href="dashboard.css">
+    <title>Watchlists</title>
+    <link rel="icon" type="image/x-icon" href="logo.jpg">
+    <link rel="stylesheet" href="watchlist.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
@@ -25,26 +25,42 @@
         </nav>
     </header>
 
-    <div class="image-container">
-        <img src="bg.png" class="img">
-        <h3 class="image-text">Your go-to destination for watchlist management</h3>
+    <h2> Your Watchlists</h2>
+    <p class="description">Check out your saved movies here in your watchlists.</p>
+
+    <h3>Create your Watchlist</h3>
+    <!-- Watchlist Creation -->
+    <form id="newListForm" class="newlistinput">
+        <input type="text" id="newListName" placeholder="Enter new watchlist name" required />
+        <button type="submit">Create</button>
+    </form>
+
+    <h3>View Watchlist and Movies</h3>
+    <!-- Watchlist Selection -->
+    <div class="watchlist-dropdown">
+        <select id="watchlistSelect"></select>
     </div>
     
     
-    <h2>Trending Movies</h2>
-    <div id="trendingContainer" class="movie-section"></div>
-
     <br>
     <br>
     <br>
 
-    <h2>Popular Movies</h2>
-    <div id="popularContainer" class="movie-section"></div>
+    <!-- <div id="watchlistControls">
+     Delete button will be injected here
+    </div> -->
+    <!-- Watchlist Display -->
+    <div id="watchlistContainer"></div>
 
+    <div class="button-wrapper">
+        <button id="deleteWatchlistBtn" style="display:none;">Delete Watchlist</button>
+    </div>
+    
+    
     <br>
     <br>
     <br>
-
+    
     <footer>
         <div class="footer">
             <div class="row">
@@ -62,11 +78,10 @@
             </div>
         </div>
     </footer>
-
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
-    <script src="watchlist-utils.js"></script>
-    <script type="module" src="dashboard.js"></script>
+    <script src="watchlist.js"></script>
 </body>
 </html>

@@ -3,31 +3,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Movie Information</title>
     <link rel="icon" type="image/x-icon" href="logo.jpg">
     <link rel="stylesheet" href="movie.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav class="nav">
-        <a href="dashboard.html">
-            <img src="logo2.png" alt="Website Logo" height="100" width="100">
-        </a>
+    <header>
+        <nav class="nav">
+            <a href="dashboard.html">
+                <img src="logo2.png" alt="Website Logo">
+            </a>
+            <ul>
+               <li><a href="dashboard.html">Home</a></li>
+                <li><a href="upcoming.html">Upcoming</a></li>
+                <li><a href="search.html">Search</a></li>
+                <li><a href="genre.html">Genre</a></li>
+                <li><a href="watchlist.html">Watchlists</a></li>
+            </ul>
+            <button id="logoutBtn" class="logout-button">Log Out</button>
+        </nav>
+    </header>
 
-        <ul>
-            <li><a href="dashboard.html">Home</a></li>
-            <li><a href="Latest.html">Latest</a></li>
-            <li><a href="genre.html">Genre</a></li>
-            <li><a href="Watchlists.html">Watchlists</a></li>
-            <li><a href="Subscriptions.html">Subscriptions</a></li>
-        </ul>
-        <button id="logoutBtn" class="logout-button">Log Out</button>
-    </nav>
-
+    <h2>Movie Information</h2>
+    
     <div class="movie-container" id="movieContainer">Loading...</div>
+
+    <br>
+    <br>
+    <br>
+
+    <footer>
+        <div class="footer">
+            <div class="row">
+                <ul>
+                    <li><a href="dashboard.html">Home</a></li>
+                    <li><a href="upcoming.html">Upcoming</a></li>
+                    <li><a href="search.html">Search</a></li>
+                    <li><a href="genre.html">Genre</a></li>
+                    <li><a href="watchlist.html">Watchlists</a></li>
+                </ul>
+            </div>
+
+            <div class="row">
+                Movie Marvel © 2025 - All rights reserved
+            </div>
+        </div>
+    </footer>
 
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="watchlist-utils.js"></script>
     <script src="movie.js"></script>
 </body>
 </html>

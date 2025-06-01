@@ -3,17 +3,18 @@ const API_KEY = '8b127865f52e616a7772337e4ef916f6';
 
 // 🟦 Firebase Config
 const firebaseConfig = {
-  apiKey: "YOUR_FIREBASE_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "SENDER_ID",
-  appId: "APP_ID"
+  apiKey: "AIzaSyCKAGAZLcFNTsfZ23yUIGKv7T1y6jaMWKA",
+    authDomain: "moviewebsite-2ce81.firebaseapp.com",
+    projectId: "moviewebsite-2ce81",
+    storageBucket: "moviewebsite-2ce81.firebasestorage.app",
+    messagingSenderId: "978355164474",
+    appId: "1:978355164474:web:a038a7444020746ba76c03"
 };
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 const db = firebase.firestore();
+
 
 const languageMap = {
   en: "English",
@@ -81,13 +82,10 @@ async function searchMovies() {
       }
     });
 
-    // ✅ Add to Watchlist button
-    const watchlistBtn = card.querySelector(".watchlist-btn");
-    watchlistBtn.addEventListener("click", (event) => {
-      event.stopPropagation(); 
-      console.log("Clicked watchlist for:", movie.title);
-      addToWatchlist(movie);
-    });
+    card.querySelector(".watchlist-btn").addEventListener("click", async (e) => {
+          e.stopPropagation();
+          await saveMovieToWatchlist(movie, db, "guest_user");
+        });
 
     container.appendChild(card);
   });
@@ -122,3 +120,22 @@ function addToWatchlist(movie) {
     }
   });
 }
+
+const auth = firebase.auth();
+
+// Ensure the DOM is fully loaded before attaching event listener
+document.addEventListener("DOMContentLoaded", () => {
+  const logoutBtn = document.getElementById("logoutBtn");
+  if (logoutBtn) {
+    logoutBtn.addEventListener("click", () => {
+      auth.signOut().then(() => {
+        alert("Logged out!");
+        window.location.href = "landing_page.html";
+      }).catch((error) => {
+        console.error("Logout error:", error);
+      });
+    });
+  } else {
+    console.warn("Logout button not found!");
+  }
+});
