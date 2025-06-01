@@ -9,8 +9,20 @@ const firebaseConfig = {
   firebase.initializeApp(firebaseConfig);
   const db = firebase.firestore();
 
+let userId = null;
 
-const userId = "guest_user"; // Replace with actual user ID if you have auth
+
+firebase.auth().onAuthStateChanged(user => {
+  if (user) {
+    userId = user.uid;
+    loadWatchlistNames(); // Load once user is authenticated
+  } else {
+    alert("You must be signed in to view your watchlists.");
+    window.location.href = "log_in.html"; // Optional: redirect to login
+  }
+});
+
+//const userId = "guest_user"; // Replace with actual user ID if you have auth
 const watchlistSelect = document.getElementById("watchlistSelect");
 const newListForm = document.getElementById("newListForm");
 const container = document.getElementById("watchlistContainer");
@@ -50,7 +62,7 @@ watchlistSelect.addEventListener("change", () => {
   const selectedList = watchlistSelect.value;
   if (selectedList && selectedList !== "Default") {
     deleteBtn.style.display = "inline-block";
-    deleteBtn.textContent = `Delete ${selectedList} Watchlist`;
+    deleteBtn.textContent = `Delete "${selectedList}" Watchlist`;
   } else {
     deleteBtn.style.display = "none";
   }
@@ -201,7 +213,7 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 // 9. Initial setup
-loadWatchlistNames();
+//loadWatchlistNames();
 
 
 

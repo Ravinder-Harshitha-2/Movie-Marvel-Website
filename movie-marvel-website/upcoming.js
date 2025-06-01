@@ -32,7 +32,13 @@ const API_KEY = '8b127865f52e616a7772337e4ef916f6';  // Replace with actual TMDB
 
       data.results.forEach(movie => {
         const card = document.createElement("div");
-        const releaseDate = movie.release_date || 'N/A';
+        const releaseDate = movie.release_date
+        ? new Date(movie.release_date).toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+            })
+        : 'N/A';
         const genres = movie.genre_ids.map(id => genreMap[id]).filter(Boolean).join(', ');
 
         card.className = "movie-card";
@@ -52,16 +58,22 @@ const API_KEY = '8b127865f52e616a7772337e4ef916f6';  // Replace with actual TMDB
 
          card.querySelector(".watchlist-btn").addEventListener("click", async (e) => {
           e.stopPropagation();
-          await saveMovieToWatchlist(movie, db, "guest_user");
-        });
+          const user = firebase.auth().currentUser;
+            if (user) {
+                await saveMovieToWatchlist(movie, db, user.uid);
+            } else {
+                alert("Please sign in to save movies to your watchlist.");
+            }
+            });
 
         container.appendChild(card);
       });
     }
 
-    function addToWatchlist(movie) {
-      const userId = "guest_user";
-      const selectedList = "Default";
+    async function addToWatchlist(movie) {
+      const user = auth.currentUser;
+        const userId = user.uid; // Replace with dynamic user ID when auth is active
+        const selectedList = "Default";
 
       const movieData = {
         id: movie.id,
@@ -71,21 +83,36 @@ const API_KEY = '8b127865f52e616a7772337e4ef916f6';  // Replace with actual TMDB
         language: movie.original_language
       };
 
-      const userDoc = db.collection("watchlists").doc(userId);
-      userDoc.get().then(doc => {
-        const currentData = doc.data() || {};
-        const list = currentData[selectedList] || [];
+      try {
+    const movieRef = doc(db, "users", userId, "watchlists", selectedList, "movies", String(movie.id));
+    const movieSnap = await getDoc(movieRef);
 
-        const alreadyExists = list.some(m => m.id === movie.id);
-        if (!alreadyExists) {
-          list.push(movieData);
-          userDoc.set({ [selectedList]: list }, { merge: true }).then(() => {
-            alert(`Added "${movie.title}" to "${selectedList}"`);
-          });
-        } else {
-          alert("Movie already in watchlist!");
-        }
-      });
+    if (!movieSnap.exists()) {
+      await setDoc(movieRef, movieData);
+      alert(`Added "${movie.title}" to "${selectedList}"`);
+    } else {
+      alert("Movie already in watchlist!");
+    }
+  } catch (error) {
+    console.error("Error adding movie to watchlist:", error);
+    alert("Failed to add movie. Please try again.");
+  }
+
+    //   const userDoc = db.collection("watchlists").doc(userId);
+    //   userDoc.get().then(doc => {
+    //     const currentData = doc.data() || {};
+    //     const list = currentData[selectedList] || [];
+
+    //     const alreadyExists = list.some(m => m.id === movie.id);
+    //     if (!alreadyExists) {
+    //       list.push(movieData);
+    //       userDoc.set({ [selectedList]: list }, { merge: true }).then(() => {
+    //         alert(`Added "${movie.title}" to "${selectedList}"`);
+    //       });
+    //     } else {
+    //       alert("Movie already in watchlist!");
+    //     }
+    //   });
     }
 
 const auth = firebase.auth();

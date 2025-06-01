@@ -18,7 +18,7 @@ async function saveMovieToWatchlist(movie, db, userId = "guest_user") {
 
   const choice = parseInt(prompt(promptMsg));
   if (isNaN(choice) || choice < 1 || choice > listNames.length) {
-    alert("Invalid selection.");
+    alert("No selection made.");
     return;
   }
 

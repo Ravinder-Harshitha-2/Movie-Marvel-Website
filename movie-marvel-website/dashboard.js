@@ -1,3 +1,5 @@
+import { doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js"; // Make sure these are imported
+
 const API_KEY = '8b127865f52e616a7772337e4ef916f6';  // Replace with actual TMDB API key
     const genreMap = {};
 
@@ -55,41 +57,72 @@ const API_KEY = '8b127865f52e616a7772337e4ef916f6';  // Replace with actual TMDB
 
          card.querySelector(".watchlist-btn").addEventListener("click", async (e) => {
           e.stopPropagation();
-          await saveMovieToWatchlist(movie, db, "guest_user");
-        });
+          const user = firebase.auth().currentUser;
+        if (user) {
+          await saveMovieToWatchlist(movie, db, user.uid);
+        } else {
+          alert("Please sign in to save movies to your watchlist.");
+        }
+      });
 
         container.appendChild(card);
       });
     }
 
-    function addToWatchlist(movie) {
-      const userId = "guest_user";
+    async function addToWatchlist(movie) {
+      // const userId = "guest_user";
+      const user = auth.currentUser;
+      const userId = user.uid;
       const selectedList = "Default";
 
-      const movieData = {
-        id: movie.id,
-        title: movie.title,
-        poster: movie.poster_path,
-        release_date: movie.release_date,
-        language: movie.original_language
-      };
+      const movieRef = doc(db, "users", userId, "watchlists", selectedList, "movies", movie.id.toString());
 
-      const userDoc = db.collection("watchlists").doc(userId);
-      userDoc.get().then(doc => {
-        const currentData = doc.data() || {};
-        const list = currentData[selectedList] || [];
-
-        const alreadyExists = list.some(m => m.id === movie.id);
-        if (!alreadyExists) {
-          list.push(movieData);
-          userDoc.set({ [selectedList]: list }, { merge: true }).then(() => {
-            alert(`Added "${movie.title}" to "${selectedList}"`);
-          });
-        } else {
+      try {
+        const docSnap = await getDoc(movieRef);
+        if (docSnap.exists()) {
           alert("Movie already in watchlist!");
+        } else {
+          await setDoc(movieRef, {
+            id: movie.id,
+            title: movie.title,
+            poster: movie.poster_path,
+            release_date: movie.release_date,
+            language: movie.original_language,
+            addedAt: new Date()
+          });
+          alert(`Added "${movie.title}" to "${selectedList}"`);
         }
-      });
+      } catch (error) {
+        console.error("Error adding to watchlist:", error);
+        alert("Failed to add movie to watchlist.");
+      }
     }
+
+    //   const movieData = {
+    //     id: movie.id,
+    //     title: movie.title,
+    //     poster: movie.poster_path,
+    //     release_date: movie.release_date,
+    //     language: movie.original_language
+    //   };
+
+    //   // const userDoc = db.collection("watchlists").doc(userId);
+    //   // userDoc.get().then(doc => {
+
+    //     const currentData = doc.data() || {};
+    //     const list = currentData[selectedList] || [];
+
+    //     const alreadyExists = list.some(m => m.id === movie.id);
+    //     if (!alreadyExists) {
+    //       list.push(movieData);
+    //       userDoc.set({ [selectedList]: list }, { merge: true }).then(() => {
+    //         alert(`Added "${movie.title}" to "${selectedList}"`);
+    //       });
+    //     } else {
+    //       alert("Movie already in watchlist!");
+    //     }
+    //   });
+    // }
 
 const auth = firebase.auth();
 

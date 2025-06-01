@@ -152,7 +152,7 @@ h2{
       margin: 20px auto;
     }
 
-    .watch-button {
+    .watchlist-btn {
         background-color: #ffde59;
         color: #131212;
         font-size: 16px;
@@ -169,7 +169,7 @@ h2{
         border: 2px solid transparent;
     }
 
-    .watch-button:hover{
+    .watchlist-btn:hover{
     color: #ffde59;
     background-color: #131212;
     cursor: pointer;

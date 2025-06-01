@@ -53,9 +53,9 @@ async function searchMovies() {
       card.className = "movie-card";
       card.innerHTML = `
         <img src="https://image.tmdb.org/t/p/w200${movie.poster_path || ''}" alt="${movie.title}" onerror="this.onerror=null;this.src='placeholder.jpg';" />
-        <h4>${movie.title}</h4>
-        <p><strong>Year:</strong> ${releaseYear}</p>
-        <p><strong>Genre:</strong> ${genres || 'N/A'}</p>
+        <h3>${movie.title}</h3>
+        <p>Year: ${releaseYear}</p>
+        <p>Genre: ${genres || 'N/A'}</p>
         <button class="watchlist-btn">Add to Watchlist</button>
       `;
 
@@ -70,7 +70,12 @@ async function searchMovies() {
     // ✅ Add to Watchlist button
     card.querySelector(".watchlist-btn").addEventListener("click", async (e) => {
           e.stopPropagation();
-          await saveMovieToWatchlist(movie, db, "guest_user");
+          const user = firebase.auth().currentUser;
+          if (user) {
+            await saveMovieToWatchlist(movie, db, user.uid);
+          } else {
+            alert("Please sign in to save movies to your watchlist.");
+          }
         });
 
       container.appendChild(card);
@@ -82,9 +87,11 @@ async function searchMovies() {
 }
 
 // ➕ Add to Firebase Watchlist
-function addToWatchlist(movie) {
-  const userId = "guest_user"; // replace later with logged-in user
+async function addToWatchlist(movie) {
+  const user = auth.currentUser;
+  const userId = user.uid; // fallback for testing
   const selectedList = document.getElementById("watchlistSelect")?.value || "Default";
+
 
   const movieData = {
     id: movie.id,
@@ -94,22 +101,38 @@ function addToWatchlist(movie) {
     language: movie.original_language
   };
 
-  const userDoc = db.collection("watchlists").doc(userId);
-  userDoc.get().then(doc => {
-    const currentData = doc.data() || {};
-    const list = currentData[selectedList] || [];
+  try {
+    const movieRef = doc(db, "users", userId, "watchlists", selectedList, "movies", String(movie.id));
+    const movieSnap = await getDoc(movieRef);
 
-    const alreadyExists = list.some(m => m.id === movie.id);
-    if (!alreadyExists) {
-      list.push(movieData);
-      userDoc.update({ [selectedList]: list }).then(() => {
-        alert(`Added "${movie.title}" to "${selectedList}"`);
-      });
+    if (!movieSnap.exists()) {
+      await setDoc(movieRef, movieData);
+      alert(`Added "${movie.title}" to "${selectedList}"`);
     } else {
       alert("Movie already in watchlist!");
     }
-  });
+  } catch (error) {
+    console.error("Error adding movie to watchlist:", error);
+    alert("Failed to add movie. Please try again.");
+  }
 }
+
+//   const userDoc = db.collection("watchlists").doc(userId);
+//   userDoc.get().then(doc => {
+//     const currentData = doc.data() || {};
+//     const list = currentData[selectedList] || [];
+
+//     const alreadyExists = list.some(m => m.id === movie.id);
+//     if (!alreadyExists) {
+//       list.push(movieData);
+//       userDoc.update({ [selectedList]: list }).then(() => {
+//         alert(`Added "${movie.title}" to "${selectedList}"`);
+//       });
+//     } else {
+//       alert("Movie already in watchlist!");
+//     }
+//   });
+// }
 
 const auth = firebase.auth();
 

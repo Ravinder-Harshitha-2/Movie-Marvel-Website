@@ -15,16 +15,25 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth();
 
-document.getElementById("loginBtn").addEventListener("click", () => {
+document.getElementById("loginBtn").addEventListener("click", async () => {
     const email = document.getElementById("login-email").value;
     const password = document.getElementById("login-password").value;
     
-    signInWithEmailAndPassword(auth, email, password)
-    .then((userCredential) => {
+    try {
+        const userCredential = await signInWithEmailAndPassword(auth, email, password);
         alert("Login successful!");
         window.location.href = "dashboard.html";
-    })
-    .catch((error) => {
-        alert("Login error" + error.message);
+      } catch (error) {
+        alert("Login failed: " + error.message);
+      }
     });
-});
+
+//     signInWithEmailAndPassword(auth, email, password)
+//     .then((userCredential) => {
+//         alert("Login successful!");
+//         window.location.href = "dashboard.html";
+//     })
+//     .catch((error) => {
+//         alert("Login error" + error.message);
+//     });
+// });

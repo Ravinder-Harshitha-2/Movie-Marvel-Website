@@ -49,28 +49,29 @@ const firebaseConfig = {
 
         ${trailer ? `<iframe src="https://www.youtube.com/embed/${trailer.key}" frameborder="0" allowfullscreen></iframe>` : `<p style="margin-top:20px;">No trailer available</p>`}
 
-        <button id="addToWatchlist" class="watch-button">Add to Watchlist</button>
+        <button id="addToWatchlist" class="watchlist-btn">Add to Watchlist</button>
       `;
 
       window.movie = movie;
 
-      const addButton = document.getElementById("addToWatchlist");
-      if (addButton) {
-        addButton.addEventListener("click", async () => {
-          try {
-            await saveMovieToWatchlist(movie, db, "guest_user", "Default");
-          } catch (error) {
-            console.error("Error adding movie to watchlist:", error);
-            alert("Failed to add movie to watchlist.");
-          }
-        });
-      }
+      container.querySelector(".watchlist-btn").addEventListener("click", async (e) => {
+        e.stopPropagation();
+        const user = firebase.auth().currentUser;
+        if (user) {
+          await saveMovieToWatchlist(movie, db, user.uid);
+        } else {
+          alert("Please sign in to save movies to your watchlist.");
+        }
+      });
+
+      container.appendChild(card);
+
   }
     
 
-    function addToWatchlist() {
-      const userId = "guest_user"; // Replace with real user ID in production
-      const selectedList = "Default";
+    async function addToWatchlist() {
+      const user = auth.currentUser;
+      const userId = user.uid
 
       const movieData = {
         id: window.movie.id,
@@ -80,22 +81,38 @@ const firebaseConfig = {
         language: window.movie.original_language
       };
 
-      const userDoc = db.collection("watchlists").doc(userId);
-      userDoc.get().then(doc => {
-        const currentData = doc.data() || {};
-        const list = currentData[selectedList] || [];
+      try {
+        const movieRef = doc(db, "users", userId, "watchlists", selectedList, "movies", String(movieData.id));
+        const movieSnap = await getDoc(movieRef);
 
-        const alreadyExists = list.some(m => m.id === window.movie.id);
-        if (!alreadyExists) {
-          list.push(movieData);
-          userDoc.set({ [selectedList]: list }, { merge: true }).then(() => {
-            alert(`Added "${window.movie.title}" to "${selectedList}"`);
-          });
+        if (!movieSnap.exists()) {
+          await setDoc(movieRef, movieData);
+          alert(`Added "${movieData.title}" to "${selectedList}"`);
         } else {
           alert("Movie already in watchlist!");
         }
-      });
+      } catch (error) {
+        console.error("Error adding movie to watchlist:", error);
+        alert("Failed to add movie. Please try again.");
+      }
     }
+
+    //   const userDoc = db.collection("watchlists").doc(userId);
+    //   userDoc.get().then(doc => {
+    //     const currentData = doc.data() || {};
+    //     const list = currentData[selectedList] || [];
+
+    //     const alreadyExists = list.some(m => m.id === window.movie.id);
+    //     if (!alreadyExists) {
+    //       list.push(movieData);
+    //       userDoc.set({ [selectedList]: list }, { merge: true }).then(() => {
+    //         alert(`Added "${window.movie.title}" to "${selectedList}"`);
+    //       });
+    //     } else {
+    //       alert("Movie already in watchlist!");
+    //     }
+    //   });
+    // }
 
     loadMovieDetails();
 
