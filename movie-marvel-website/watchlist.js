@@ -15,10 +15,10 @@ let userId = null;
 firebase.auth().onAuthStateChanged(user => {
   if (user) {
     userId = user.uid;
-    loadWatchlistNames(); // Load once user is authenticated
+    loadWatchlistNames(); 
   } else {
     alert("You must be signed in to view your watchlists.");
-    window.location.href = "log_in.html"; // Optional: redirect to login
+    window.location.href = "log_in.html"; 
   }
 });
 
