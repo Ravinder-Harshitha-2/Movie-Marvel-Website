@@ -28,12 +28,3 @@ document.getElementById("loginBtn").addEventListener("click", async () => {
       }
     });
 
-//     signInWithEmailAndPassword(auth, email, password)
-//     .then((userCredential) => {
-//         alert("Login successful!");
-//         window.location.href = "dashboard.html";
-//     })
-//     .catch((error) => {
-//         alert("Login error" + error.message);
-//     });
-// });

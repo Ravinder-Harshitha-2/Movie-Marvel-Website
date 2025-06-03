@@ -13,13 +13,8 @@ let userId = null;
 
 
 firebase.auth().onAuthStateChanged(user => {
-  if (user) {
-    userId = user.uid;
-    loadWatchlistNames(); 
-  } else {
-    alert("You must be signed in to view your watchlists.");
-    window.location.href = "log_in.html"; 
-  }
+  userId = user.uid;
+  loadWatchlistNames();
 });
 
 //const userId = "guest_user"; // Replace with actual user ID if you have auth
@@ -202,11 +197,10 @@ document.addEventListener("DOMContentLoaded", () => {
     logoutBtn.addEventListener("click", () => {
       firebase.auth().signOut().then(() => {
         alert("Logged out!");
-        window.location.href = "index.html";
+        window.location.href = "index.html";}, 500);
       }).catch((error) => {
         console.error("Logout error:", error);
       });
-    });
   } else {
     console.warn("Logout button not found!");
   }
