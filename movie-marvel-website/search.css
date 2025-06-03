@@ -1,3 +1,8 @@
+/* CSS for search page */
+* {
+  box-sizing: border-box;
+}
+
 /* Navigation bar */
 nav {
   display: flex;
@@ -63,6 +68,10 @@ nav ul li a {
   cursor: pointer;
   border: 2px solid #ffde59; 
   box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+
+.hamburger{
+  display: none;
 }
 
 /* The image used as background*/
@@ -193,7 +202,6 @@ h2{
 .footer {
   background: #ffde59;
   padding: 30px 0px;
-  font-family: 'Play', sans-serif;
   text-align: center;
 }
 
@@ -202,19 +210,21 @@ h2{
   width: 100%;
   margin: 1% 0%;
   padding: 0.6% 0%;
-  color:#181818;
+  color: #181818;
   font-size: 0.8em;
+  font-weight: 500;
   font-family: 'Montserrat';
 }
 
 .footer .row a {
   text-decoration: none;
   color: #181818;
+  font-weight: 500;
   transition: 0.5s;
 }
 
 .footer .row a:hover {
-  color: #bababa;
+  border-bottom: 3px solid black; 
 }
 
 .footer .row ul {
@@ -230,4 +240,257 @@ h2{
 .footer .row a i {
   font-size: 2em;
   margin: 0% 1%;
+}
+
+.movie-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px #ffde59;
+}
+
+/* Media query up to 480px */
+@media screen and (max-width: 480px) {
+
+.nav {
+    width: 100%;
+    background-color: #131212;
+    border-bottom: 1px solid #ffde59;
+  }
+
+  .nav-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+
+  .nav img {
+    width: 80px;
+    height: auto;
+    margin: 0;
+  }
+
+  .hamburger {
+    font-size: 30px;
+    color:#ffde59;
+    cursor: pointer;
+    display: block;
+    padding: 10px;
+  }
+
+  .nav-links,
+  .logout-button {
+    display: none;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+    background-color: #131212;
+    padding: 0 8px;
+  }
+
+  .nav.show .nav-links,
+  .nav.show .logout-button {
+    display: flex;
+  }
+
+  .nav-links li {
+    width: 100%;
+  }
+
+  .nav-links li a {
+    font-size: 15px;
+    padding: 8px 0;
+    display: block;
+    width: 100%;
+    color:#ffde59;
+    text-decoration: none;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .logout-button {
+    margin: 20px 20px;
+    padding: 10px;
+    width: 100%;
+    background-color: #ffde59;
+    color: #131212;
+    border: none;
+    border-radius: 5px;
+  }
+
+  .logout-button:hover {
+  color: #ffde59;
+  background-color: #131212;
+  cursor: pointer;
+  border: 2px solid #ffde59;
+  box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+h2{
+    text-align: center;
+    font-family: 'Montserrat';
+    color: #ffde59;
+    font-weight: 400;
+    font-size: 25px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.info-text{
+    text-align: center;
+    font-family: 'Montserrat';
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 20px;
+    padding: 25px;
+}
+
+.search-container {
+  margin: 30px;
+}
+
+/* Button styling */
+.search-container button {
+ margin: 2px;
+}
+
+/* Footer CSS to make them appear in a single cloumn */
+.row ul {
+  display: grid;
+  grid-row: 1;
+  grid-template-columns: 100%; 
+  padding: 0; 
+  margin-top: 4%;
+  margin-bottom: 6%;
+}
+
+.row ul li {
+  text-align: center;
+  margin: 0;
+  padding-bottom: 5%;
+}
+
+.row ul li a{
+  font-size: 16px;
+}
+
+.row p{
+  font-size: 8px;
+  text-align: center; 
+  margin: 5%;
+}
+}
+
+/* Media query from 481px to 1024px */
+@media (min-width: 481px) and (max-width: 1024px) {
+  body {
+    max-width: 100%;
+    margin: 0;
+}
+
+.bg{
+  max-width: 100%;
+}
+
+/* CSS for logo to move it above navigation bar 
+and nav bar is horizontally placed in a single row */
+.nav {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 5px;
+}
+
+.nav img {
+  margin-right: 30px;
+  margin-bottom: 6px;
+  width: 100px;
+  height: 100px;
+}
+
+.nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.nav ul li {
+  margin-right: 2px;
+}
+
+.nav ul li a {
+  text-decoration: none;
+  color: #ffde59;
+}
+
+.logout-button{
+  margin-top: 30px;
+  margin-bottom: 30px;
+  margin-left: 45px;
+}
+
+h2{
+    text-align: center;
+    font-family: 'Montserrat';
+    color: #ffde59;
+    font-weight: 400;
+    font-size: 30px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.info-text{
+    text-align: center;
+    font-family: 'Montserrat';
+    color: #ffffff;
+    font-weight: 400;
+    font-size: 18px;
+    padding: 25px;
+}
+
+.movie-grid {
+  display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      margin-bottom: 40px;
+      justify-content: center;
+      margin: 8px;
+}
+
+/* Footer CSS to make them appear in a single cloumn */
+.row ul {
+  justify-content: center;
+  display: flex;
+  flex-direction: row; 
+  padding: 0; 
+}
+
+.row ul li {
+  text-align: center; 
+  margin: 10px 0; 
+}
+
+.row ul li a{
+  font-size: 16px;
+}
+
+.row p{
+  /* font-size: 14px; */
+  text-align: center; 
+  margin: 10px;
+}
+
+.row a i{
+  font-size: 2em;
+  margin: 0% 1%;
+}
+}
+
+/* Media query for above 1024px */
+/* Original CSS is effective here */
+@media screen and (min-width: 1025px) {
+  body {
+    max-width: 100%;
+    margin: 0;
+  }
 }

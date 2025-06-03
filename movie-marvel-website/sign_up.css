@@ -1,3 +1,8 @@
+/* CSS for signup page */
+* {
+  box-sizing: border-box;
+}
+
 body,html {
     background-image: url('bg1.png');
     background-repeat: no-repeat;
@@ -40,7 +45,7 @@ body,html {
 }
 
 .signup-box input {
-  width: 90%;
+  width: 96%;
   padding: 10px;
   margin-bottom: 15px;
   border: none;
@@ -82,4 +87,53 @@ body,html {
 .signup-box .login a:hover {
     color: #ccc;
     text-decoration: underline;
+}
+
+/* Mobile-specific (≤ 480px) */
+@media screen and (max-width: 480px) {
+
+  .signup-box {
+    width: 100%;
+    max-width: 360px;
+    border-radius: 4%;
+  }
+
+  .container {
+  margin-top: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  flex-wrap: wrap; 
+}
+
+  .background{
+    display: none;
+  }
+}
+
+/* Media query from 481px to 1024px */
+@media (min-width: 481px) and (max-width: 1024px) {
+  .background {
+    display: none;
+  }
+
+  .container {
+    justify-content: center;
+  }
+
+  .signup-box {
+    width: 100%;
+    max-width: 360px;
+    border-radius: 4%;
+  }
+}
+
+/* Media query for above 1024px */
+/* Original CSS is effective here */
+@media screen and (min-width: 1025px) {
+  body {
+    max-width: 100%;
+    margin: 0;
+  }
 }

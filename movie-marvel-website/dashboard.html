@@ -9,12 +9,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Top Navigation bar with logout button-->
     <header>
-        <nav class="nav">
+        <nav class="nav" id="mobilenav">
             <a href="dashboard.html">
                 <img src="logo2.png" alt="Website Logo">
             </a>
-            <ul>
+            <div class="hamburger" onclick="toggleMobileMenu()">☰</div>
+            <ul class="nav-links">
                 <li><a href="dashboard.html">Home</a></li>
                 <li><a href="upcoming.html">Upcoming</a></li>
                 <li><a href="search.html">Search</a></li>
@@ -25,12 +27,13 @@
         </nav>
     </header>
 
+    <!-- Slogan/tagline of the website -->
     <div class="image-container">
         <img src="bg.png" class="img">
         <h3 class="image-text">Your go-to destination for watchlist management</h3>
     </div>
     
-    
+    <!-- Trending Movies container that shows all the trending movies in a grid -->
     <h2>Trending Movies</h2>
     <div id="trendingContainer" class="movie-section"></div>
 
@@ -38,6 +41,7 @@
     <br>
     <br>
 
+    <!-- Popular Movies container that shows all the popular movies in a grid -->
     <h2>Popular Movies</h2>
     <div id="popularContainer" class="movie-section"></div>
 
@@ -45,6 +49,7 @@
     <br>
     <br>
 
+    <!-- Footer of the webpage with links to other webpages -->
     <footer>
         <div class="footer">
             <div class="row">
@@ -63,9 +68,18 @@
         </div>
     </footer>
 
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById("mobilenav").classList.toggle("show");
+        }
+    </script>
+
+    <!-- Firebase SDK-->
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+
+    <!-- links to configure file and JavaScript file -->
     <script src="watchlist-utils.js"></script>
     <script type="module" src="dashboard.js"></script>
 </body>

@@ -1,0 +1,41 @@
+ /* CSS for index page */
+ * {
+     box-sizing: border-box;
+ }
+
+ body {
+     background-image: url('bg.png');
+     background-repeat: no-repeat;
+     background-size: cover;
+     background-attachment: fixed;
+ }
+
+ .mainbuttons {
+     margin-top: 470px;
+     margin-left: 620px;
+     position: fixed;
+ }
+
+ .button {
+     background-color: #ffde59;
+     color: #131212;
+     font-size: 18px;
+     padding: 18px 25px;
+     border-radius: 4px;
+     border: none;
+     text-align: center;
+     cursor: pointer;
+     text-decoration: none;
+     font-family: Montserrat;
+     font-weight: 500;
+     margin-right: 25px;
+     border: 2px solid transparent;
+ }
+
+ .button:hover {
+     color: #ffde59;
+     background-color: #131212;
+     cursor: pointer;
+     border: 2px solid #ffde59;
+     box-shadow: 0 12px 16px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+ }

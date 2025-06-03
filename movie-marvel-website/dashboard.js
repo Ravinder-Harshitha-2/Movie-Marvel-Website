@@ -1,7 +1,7 @@
 import { doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/11.8.1/firebase-firestore.js"; // Make sure these are imported
 
-const API_KEY = '8b127865f52e616a7772337e4ef916f6';  // Replace with actual TMDB API key
-    const genreMap = {};
+const API_KEY = '8b127865f52e616a7772337e4ef916f6';  
+const genreMap = {};
 
     const firebaseConfig = {
     apiKey: "AIzaSyCKAGAZLcFNTsfZ23yUIGKv7T1y6jaMWKA",
@@ -15,7 +15,7 @@ const API_KEY = '8b127865f52e616a7772337e4ef916f6';  // Replace with actual TMDB
     firebase.initializeApp(firebaseConfig);
     const db = firebase.firestore();
 
-    // Load genres
+    // Loading genres
     async function loadGenres() {
       const res = await fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}`);
       const data = await res.json();
@@ -70,7 +70,6 @@ const API_KEY = '8b127865f52e616a7772337e4ef916f6';  // Replace with actual TMDB
     }
 
     async function addToWatchlist(movie) {
-      // const userId = "guest_user";
       const user = auth.currentUser;
       const userId = user.uid;
       const selectedList = "Default";
@@ -98,31 +97,6 @@ const API_KEY = '8b127865f52e616a7772337e4ef916f6';  // Replace with actual TMDB
       }
     }
 
-    //   const movieData = {
-    //     id: movie.id,
-    //     title: movie.title,
-    //     poster: movie.poster_path,
-    //     release_date: movie.release_date,
-    //     language: movie.original_language
-    //   };
-
-    //   // const userDoc = db.collection("watchlists").doc(userId);
-    //   // userDoc.get().then(doc => {
-
-    //     const currentData = doc.data() || {};
-    //     const list = currentData[selectedList] || [];
-
-    //     const alreadyExists = list.some(m => m.id === movie.id);
-    //     if (!alreadyExists) {
-    //       list.push(movieData);
-    //       userDoc.set({ [selectedList]: list }, { merge: true }).then(() => {
-    //         alert(`Added "${movie.title}" to "${selectedList}"`);
-    //       });
-    //     } else {
-    //       alert("Movie already in watchlist!");
-    //     }
-    //   });
-    // }
 
 const auth = firebase.auth();
 

@@ -9,12 +9,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Top Navigation bar with logout button-->
     <header>
-        <nav class="nav">
+        <nav class="nav" id="mobilenav">
             <a href="dashboard.html">
                 <img src="logo2.png" alt="Website Logo">
             </a>
-            <ul>
+            <div class="hamburger" onclick="toggleMobileMenu()">☰</div>
+            <ul class="nav-links">
                 <li><a href="dashboard.html">Home</a></li>
                 <li><a href="upcoming.html">Upcoming</a></li>
                 <li><a href="search.html">Search</a></li>
@@ -62,6 +64,12 @@
         </div>
     </footer>
 
+    <script>
+        function toggleMobileMenu() {
+            document.getElementById("mobilenav").classList.toggle("show");
+        }
+    </script>
+    
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
